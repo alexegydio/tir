@@ -737,8 +737,8 @@ class WebappInternal(Base):
         """
         success = False
         container = None
-
-        self.wait_element(term="[style*='fwskin_seekbar_ico']", scrap_type=enum.ScrapType.CSS_SELECTOR)
+        
+        self.wait_element_timeout(term="[style*='fwskin_seekbar_ico']", scrap_type=enum.ScrapType.CSS_SELECTOR, timeout = self.config.time_out)
         endtime = time.time() + self.config.time_out
         
         while (time.time() < endtime and not success): 
@@ -1995,6 +1995,7 @@ class WebappInternal(Base):
         self.scroll_to_element(element_selenium)
         self.wait.until(EC.element_to_be_clickable((By.XPATH, xpath_soup(element_soup))))
         self.click(element_selenium)
+        
     def click_sub_menu(self, sub_item):
         """
         [Internal]
@@ -2175,7 +2176,7 @@ class WebappInternal(Base):
         print("Waiting processing...")
 
         if not timeout:
-            timeout = 1200
+            timeout = 100
 
         endtime = time.time() + timeout
         while(time.time() < endtime):
