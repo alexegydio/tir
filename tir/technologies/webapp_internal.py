@@ -739,6 +739,7 @@ class WebappInternal(Base):
         container = None
         
         self.wait_element_timeout(term="[style*='fwskin_seekbar_ico']", scrap_type=enum.ScrapType.CSS_SELECTOR, timeout = self.config.time_out)
+        self.take_screenshot(f"fwskin")
         endtime = time.time() + self.config.time_out
         
         while (time.time() < endtime and not success): 
